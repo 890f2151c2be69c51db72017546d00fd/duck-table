@@ -4,5 +4,33 @@
     box-sizing: border-box;
 }
 
+.duck-table-container {
+    overflow: auto;
+}
 
+.duck-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.duck-table-header {
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    flex: 1 1 auto;
+    background-color: #fff;
+}
+
+.duck-table-body {
+    flex: 1 1 auto;;
+}
+
+.duck-table-row {
+    display: flex;
+}
+
+.duck-table-cell {
+    flex: 1 1 300px;
+    border: 1px solid #000;
+}
 
