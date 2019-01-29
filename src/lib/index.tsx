@@ -14,9 +14,18 @@ interface IProps {
     maxHeight?: string
 }
 
+const countMaxTableWidth = (columns: IColumn[]) => {
+    let width = 0
+    for(const column of columns) {
+        if (!column.maxWidth) return 'auto'
+        width = width + column.maxWidth
+    }
+    return width
+}
+
 const DuckTable = (props: IProps) => {
     const {columns, data} = props
-    const maxWidth = columns.reduce((acc, column) => acc + (column.maxWidth || 0), 0)
+    const maxWidth = countMaxTableWidth(columns)
     const minWidth = columns.reduce((acc, column) => acc + (column.minWidth || 0), 0)
     return (
     <div className="duck-table-container" style={{maxHeight: props.maxHeight, maxWidth}}>
@@ -24,7 +33,10 @@ const DuckTable = (props: IProps) => {
             <div className="duck-table-header">
                 <div className="duck-table-row">
                     {columns.map(column =>
-                        <div className="duck-table-cell" key={column.id}>{column.name}</div>
+                        <div className="duck-table-cell" key={column.id} style={{
+                            minWidth: `${column.minWidth}px`,
+                            maxWidth: `${column.maxWidth}px`
+                        }}>{column.name}</div>
                     )}
                 </div>
             </div>
@@ -32,7 +44,10 @@ const DuckTable = (props: IProps) => {
                 {data.map(item =>
                     <div className="duck-table-row" key={item.id}>
                         {columns.map(column =>
-                            <div className="duck-table-cell" key={column.id}>{item[column.id]}</div>
+                            <div className="duck-table-cell" key={column.id} style={{
+                                minWidth: `${column.minWidth}px`,
+                                maxWidth: `${column.maxWidth}px`
+                            }}>{item[column.id]}</div>
                         )}
                     </div>
                 )}

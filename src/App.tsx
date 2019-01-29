@@ -4,9 +4,9 @@ import './App.css'
 import DuckTable from './lib'
 
 const columns = [
-    {id: 'id', name: 'id', maxWidth: 300, minWidth: 200},
+    {id: 'id', name: 'id', maxWidth: 300, minWidth: 300},
     {id: 'name', name: 'meno', maxWidth: 300, minWidth: 200},
-    {id: 'age', name: 'vek', maxWidth: 300, minWidth: 200}
+    {id: 'age', name: 'vek', minWidth: 200}
 ]
 
 const data = [
